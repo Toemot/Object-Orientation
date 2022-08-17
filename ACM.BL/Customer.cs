@@ -2,10 +2,15 @@
 {
     public class Customer
     {
+        public Customer() {}
+        public Customer(int customerId)
+        {
+            CustomerId = customerId;
+        }
         public int CustomerId { get; private set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Email { get; set; }
+        public string LastName { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
+        public string Email { get; set; } = null!;
 
         public string FullName
         {
@@ -22,6 +27,16 @@
                 }
                 return fullName;
             }
+        }
+
+        public bool Validate()
+        {
+            var isValid = true;
+
+            if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
+            if (string.IsNullOrWhiteSpace(Email)) isValid = false;
+
+            return isValid;
         }
     }
 }
