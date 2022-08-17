@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class OrderItem
+    public class OrderItem : BaseEntity
     {
         public OrderItem()
         {
@@ -20,7 +20,7 @@ namespace ACM.BL
         public decimal? PurchasePrice { get; set; }
         public int Quantity { get; set; }
         
-        public bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
 
