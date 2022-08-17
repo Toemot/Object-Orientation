@@ -21,6 +21,7 @@ namespace ACM.BLTests
             var result = "Otoks, Ola";
 
             string expected = customer.FullName;
+
             Assert.That(result, Is.EqualTo(expected));
             Assert.Pass();
         }
@@ -36,6 +37,7 @@ namespace ACM.BLTests
             var result = "Ola";
 
             string expected = customer.FullName;
+
             Assert.That(result, Is.EqualTo(expected));
             Assert.Pass();
         }
@@ -51,8 +53,52 @@ namespace ACM.BLTests
             var result = "Otoks";
 
             string expected = customer.FullName;
+
             Assert.That(result, Is.EqualTo(expected));
             Assert.Pass();
+        }
+
+        [Test]
+        public void ValidateValid()
+        {
+            Customer customer = new()
+            {
+                LastName = "Otoks",
+                Email = "otoks@otoks.com"
+            };
+            var expected = true;
+
+            var actual = customer.Validate();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ValidateMissingLastNameIsInValid()
+        {
+            Customer customer = new()
+            {
+                Email = "otoks@otoks.com"
+            };
+            var expected = false;
+
+            var actual = customer.Validate();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ValidateMissingEmailIsInValid()
+        {
+            Customer customer = new()
+            {
+                LastName = "Otoks"
+            };
+            var expected = false;
+
+            var actual = customer.Validate();
+
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }
